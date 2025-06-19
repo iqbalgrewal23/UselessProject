@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fake Chatbot</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      padding: 20px;
+      text-align: center;
+    }
+    #chatbox {
+      width: 90%;
+      max-width: 500px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input[type="text"] {
+      width: 80%;
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+    #responses {
+      margin-top: 20px;
+      text-align: left;
+    }
+    .message {
+      margin: 10px 0;
+    }
+    .user { font-weight: bold; }
+    .bot { color: green; }
+  </style>
+</head>
+<body>
+
+  <div id="chatbox">
+    <h2>Fake Chatbot 🤖</h2>
+    <input type="text" id="userInput" placeholder="Ask me anything...">
+    <button onclick="getResponse()">Send</button>
+
+    <div id="responses"></div>
+  </div>
+
+  <script>
+    var botResponses = [
+      "I'm not sure, but have you tried turning it off and on again?",
+      "Interesting question. Pineapple goes on pizza.",
+      "That's classified information.",
+      "42 is the answer to everything.",
+      "Let me think... Nope, still nothing.",
+      "Why not ask your fridge?",
+      "I only reply to messages written in Morse code.",
+      "You tell me, you're the smart one.",
+      "I'm currently on break. Leave a message after the beep. *beep*",
+      "That reminds me of a story... never mind, I forgot."
+    ];
+
+    function getResponse() {
+      var input = document.getElementById("userInput").value;
+      if (input.trim() === "") return;
+
+      var userHTML = `<div class="message user">You: ${input}</div>`;
+      var randomIndex = Math.floor(Math.random() * botResponses.length);
+      var botHTML = `<div class="message bot">Bot: ${botResponses[randomIndex]}</div>`;
+
+      document.getElementById("responses").innerHTML += userHTML + botHTML;
+      document.getElementById("userInput").value = "";
+    }
+  </script>
+
+</body>
+</html>
